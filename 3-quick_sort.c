@@ -10,10 +10,17 @@
 */
 void quick_sort(int *array, size_t size)
 {
-	
 	pre_qsort(array, 0, size - 1, size);
 }
 
+/**
+* partition - partition array along the pivot
+*
+* @a: array
+* @lower_bound: lower bound
+* @upper_bound: upper bound
+* Return: end point
+*/
 int partition(int *a, int lower_bound, int upper_bound)
 {
 	int pivot, start, end;
@@ -35,7 +42,7 @@ int partition(int *a, int lower_bound, int upper_bound)
 		}
 		if (start < end)
 		{
-			tmp = a[start];;
+			tmp = a[start];
 			a[start] = a[end];
 			a[end] = tmp;
 		}
@@ -44,8 +51,18 @@ int partition(int *a, int lower_bound, int upper_bound)
 	a[lower_bound] = a[end];
 	a[end] = tmp;
 
-	return end;
+	return (end);
 }
+
+/**
+* pre_qsort - pre sort array
+*
+* @a: array
+* @lower_bound: lower bound
+* @upper_bound: upper bound
+* @size: size of array
+* Return: None
+*/
 void pre_qsort(int *a, int lower_bound, int upper_bound, int size)
 {
 	int loc;
