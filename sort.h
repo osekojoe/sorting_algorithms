@@ -28,6 +28,8 @@ void insertion_sort_list(listint_t **list);
 void selection_sort(int *array, size_t size);
 void quick_sort(int *array, size_t size);
 void _qsort(int *a, int low, int high, int size);
+int partition(int *a, int lower_bound, int upper_bound);
+void pre_qsort(int *a, int lower_bound, int upper_bound, int size);
 void shell_sort(int *array, size_t size);
 void _ssort(int *a, int size, int n);
 void cocktail_sort_list(listint_t **list);
