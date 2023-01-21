@@ -10,54 +10,26 @@
 */
 void quick_sort(int *array, size_t size)
 {
-	pre_qsort(array, 0, size - 1, size);
+	_qsort(array, 0, size - 1, size);
 }
 
 /**
-* partition - partition array along the pivot
-*
-* @a: array
-* @lower_bound: lower bound
-* @upper_bound: upper bound
-* Return: end point
+* swap - swap elements
+* @a: first element
+* @b: second element
+* Return: None
 */
-int partition(int *a, int lower_bound, int upper_bound, int size)
+void swap(int a, int b)
 {
-	int pivot, start, end;
 	int tmp;
 
-	pivot = a[lower_bound];
-	start = lower_bound;
-	end = upper_bound;
-
-	while (start < end)
-	{
-		while (a[start] <= pivot)
-		{
-			start++;
-		}
-		while (a[end] > pivot)
-		{
-			end--;
-		}
-		if (start < end)
-		{
-			tmp = a[start];
-			a[start] = a[end];
-			a[end] = tmp;
-		}
-		print_array(a, size);
-	}
-	tmp = a[lower_bound];
-	a[lower_bound] = a[end];
-	a[end] = tmp;
-	print_array(a, size);
-
-	return (end);
+	tmp = a;
+	a = b;
+	b = tmp;
 }
 
 /**
-* pre_qsort - pre sort array
+* _qsort - partition array along the pivot
 *
 * @a: array
 * @lower_bound: lower bound
@@ -65,14 +37,38 @@ int partition(int *a, int lower_bound, int upper_bound, int size)
 * @size: size of array
 * Return: None
 */
-void pre_qsort(int *a, int lower_bound, int upper_bound, int size)
+void _qsort(int *a, int lower_bound, int upper_bound, int size)
 {
-	int loc;
+	int i, pivot, w, tmp;
 
 	if (lower_bound < upper_bound)
 	{
-		loc = partition(a, lower_bound, upper_bound, size);
-		pre_qsort(a, lower_bound, loc - 1, size);
-		pre_qsort(a, loc + 1, upper_bound, size);
+		w = lower_bound;
+		pivot = upper_bound;
+		for (i = lower_bound; i < upper_bound; i++)
+		{
+			if (a[i] < a[pivot])
+			{
+				if (i != w)
+				{
+					/* swap(a[i], a[w]); */
+					tmp = a[i];
+					a[i] = a[w];
+					a[w] = tmp;
+					print_array(a, size);
+				}
+				w++;
+			}
+		}
+		if (w != pivot && a[w] != a[pivot])
+		{
+			/* swap(a[w], a[pivot]); */
+			tmp = a[w];
+			a[w] = a[pivot];
+			a[pivot] = tmp;
+			print_array(a, size);
+		}
+		_qsort(a, lower_bound, w - 1, size);
+		_qsort(a, w + 1, upper_bound, size);
 	}
 }
