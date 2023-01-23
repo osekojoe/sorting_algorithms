@@ -52,6 +52,7 @@ void _largest(int *array, size_t size, int i, const int r_size)
 /**
  * heap_sort - sorts an array of integers in ascending order using
  *  the Heap sort algorithm
+ * @array: array
  * @size: Size of the array
  * Return: None
  */
