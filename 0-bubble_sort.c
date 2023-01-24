@@ -7,7 +7,7 @@
 * @array: input array
 * @size: array size
 * Return: None
-**/
+*/
 void bubble_sort(int *array, size_t size)
 {
 	size_t i, j, tmp;
